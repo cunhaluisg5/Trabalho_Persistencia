@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import dao.AlunoDao;
+import dao.TurmaDao;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
+    public static TurmaDao daoturma;
+    public static AlunoDao daoaluno;
+    
     public Principal() {
         initComponents();
+        daoturma = new TurmaDao();
+        daoaluno = new AlunoDao();
     }
 
     /**

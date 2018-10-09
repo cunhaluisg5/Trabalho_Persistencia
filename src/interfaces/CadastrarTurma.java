@@ -161,6 +161,7 @@ public class CadastrarTurma extends javax.swing.JDialog {
     private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
         tfnome.setText("");
         tfano.setText("");
+        tftotalalunos.setText("");
         cbensino.setSelectedIndex(0);
         tfnome.requestFocus();
     }//GEN-LAST:event_btlimparActionPerformed
@@ -173,8 +174,7 @@ public class CadastrarTurma extends javax.swing.JDialog {
             turma.setTotalAlunos(Integer.parseInt(tftotalalunos.getText()));
             turma.setEnsino(ensino(cbensino.getSelectedIndex()));
             
-            TurmaDao dao = new TurmaDao();
-            dao.insereTurma(turma);
+            Principal.daoturma.insereTurma(turma);
             
             JOptionPane.showMessageDialog(null, "Turma cadastrada com sucesso!", "Concluído", JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
