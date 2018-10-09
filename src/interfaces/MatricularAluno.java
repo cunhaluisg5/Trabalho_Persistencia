@@ -240,7 +240,17 @@ public class MatricularAluno extends javax.swing.JDialog {
     }//GEN-LAST:event_btmatricularActionPerformed
 
     private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
-        // TODO add your handling code here:
+        tfturma.setText("");
+        tfnome.setText("");
+        tfmatricula.setText("");
+        tfnascimento.setText("");
+        grpcd.clearSelection();
+        tfnome.setEnabled(false);
+        tfmatricula.setEnabled(false);
+        tfnascimento.setEnabled(false);
+        rbsim.setEnabled(false);
+        rbnao.setEnabled(false);
+        btmatricular.setEnabled(false);
     }//GEN-LAST:event_btlimparActionPerformed
 
     private int retornarRadio(){
