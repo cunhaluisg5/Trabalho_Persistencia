@@ -69,6 +69,11 @@ public class CadastrarTurma extends javax.swing.JDialog {
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
+        btlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlimparActionPerformed(evt);
+            }
+        });
 
         btsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btsair.setText("Sair");
@@ -144,6 +149,14 @@ public class CadastrarTurma extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_btsairActionPerformed
+
+    private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
+        tfnome.setText("");
+        tfano.setText("");
+        tftotalalunos.setText("");
+        cbensino.setSelectedIndex(0);
+        tfnome.requestFocus();
+    }//GEN-LAST:event_btlimparActionPerformed
 
     /**
      * @param args the command line arguments
