@@ -70,6 +70,11 @@ public class Principal extends javax.swing.JFrame {
         mcadastro.setText("Cadastro");
 
         micadastrarturma.setText("Cadastrar Turma");
+        micadastrarturma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                micadastrarturmaActionPerformed(evt);
+            }
+        });
         mcadastro.add(micadastrarturma);
 
         mimatricularaluno.setText("Matricular Aluno");
@@ -116,6 +121,10 @@ public class Principal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setExtendedState(MAXIMIZED_BOTH);
     }//GEN-LAST:event_formWindowOpened
+
+    private void micadastrarturmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_micadastrarturmaActionPerformed
+        new CadastrarTurma(null, true).setVisible(true);
+    }//GEN-LAST:event_micadastrarturmaActionPerformed
 
     /**
      * @param args the command line arguments
