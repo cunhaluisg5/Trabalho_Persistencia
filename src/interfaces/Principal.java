@@ -118,6 +118,11 @@ public class Principal extends javax.swing.JFrame {
         mbusca.add(miimprimiralunos);
 
         miimprimirturmas.setText("Imprimir lista de turmas");
+        miimprimirturmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miimprimirturmasActionPerformed(evt);
+            }
+        });
         mbusca.add(miimprimirturmas);
 
         jMenuBar1.add(mbusca);
@@ -161,6 +166,10 @@ public class Principal extends javax.swing.JFrame {
     private void miimprimiralunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miimprimiralunosActionPerformed
         new ImprimirAlunos(null, true).setVisible(true);
     }//GEN-LAST:event_miimprimiralunosActionPerformed
+
+    private void miimprimirturmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miimprimirturmasActionPerformed
+        new ImprimirTurmas(null, true).setVisible(true);
+    }//GEN-LAST:event_miimprimirturmasActionPerformed
 
     /**
      * @param args the command line arguments
