@@ -40,7 +40,7 @@ public class TurmaDao {
     }
     
     public List<Turma> listarTurmasPCD(){
-        List<Turma> l = null;
+        List<Turma> l = new ArrayList<Turma>();
         for(Turma t : lista){
             for(Aluno a : t.getAlunos()){
                 if(a.getPcd() == 1){

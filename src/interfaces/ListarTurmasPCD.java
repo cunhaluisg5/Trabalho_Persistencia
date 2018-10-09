@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Turma;
 
 /**
  *
@@ -38,6 +41,11 @@ public class ListarTurmasPCD extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Turmas Com Alunos PCD");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -112,6 +120,26 @@ public class ListarTurmasPCD extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_btsairActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try{
+            List<Turma> lista = Principal.daoturma.listarTurmasPCD();
+            DefaultTableModel modelo = (DefaultTableModel) tbinfo.getModel();
+            modelo.setNumRows(0);
+            
+            for(Turma t : lista){
+                modelo.addRow(new Object[]{
+                    t.getTur_id(),
+                    t.getNome(),
+                    t.getEnsino(),
+                    t.getAno(),
+                    t.getTotalAlunos()
+                });
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao listar turmas!", "Atenção", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

@@ -98,6 +98,11 @@ public class MatricularAluno extends javax.swing.JDialog {
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
+        btlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlimparActionPerformed(evt);
+            }
+        });
 
         btsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btsair.setText("Sair");
@@ -233,6 +238,10 @@ public class MatricularAluno extends javax.swing.JDialog {
         
         JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso!", "Concluído", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btmatricularActionPerformed
+
+    private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btlimparActionPerformed
 
     private int retornarRadio(){
         JRadioButton radio; 
