@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luis
@@ -87,6 +89,11 @@ public class Principal extends javax.swing.JFrame {
         mcadastro.add(jSeparator1);
 
         misair.setText("Sair");
+        misair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                misairActionPerformed(evt);
+            }
+        });
         mcadastro.add(misair);
 
         jMenuBar1.add(mcadastro);
@@ -170,6 +177,13 @@ public class Principal extends javax.swing.JFrame {
     private void miimprimirturmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miimprimirturmasActionPerformed
         new ImprimirTurmas(null, true).setVisible(true);
     }//GEN-LAST:event_miimprimirturmasActionPerformed
+
+    private void misairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_misairActionPerformed
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(opcao == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_misairActionPerformed
 
     /**
      * @param args the command line arguments
