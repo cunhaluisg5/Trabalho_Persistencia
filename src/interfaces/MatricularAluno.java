@@ -5,7 +5,11 @@
  */
 package interfaces;
 
+import java.util.Enumeration;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import model.Aluno;
+import model.Turma;
 
 /**
  *
@@ -13,9 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class MatricularAluno extends javax.swing.JDialog {
 
-    /**
-     * Creates new form MatricularAluno
-     */
+    Turma turma;
+    
     public MatricularAluno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -46,6 +49,7 @@ public class MatricularAluno extends javax.swing.JDialog {
         btmatricular = new javax.swing.JButton();
         btlimpar = new javax.swing.JButton();
         btsair = new javax.swing.JButton();
+        btbuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Matricular Aluno");
@@ -60,23 +64,37 @@ public class MatricularAluno extends javax.swing.JDialog {
         lbnome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbnome.setText("Nome:");
 
+        tfnome.setEnabled(false);
+
         lbnascimento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbnascimento.setText("Ano de Nascimento:");
 
+        tfnascimento.setEnabled(false);
+
         lbmatricula.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbmatricula.setText("Matrícula:");
+
+        tfmatricula.setEnabled(false);
 
         lbpcd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbpcd.setText("PCD:");
 
         grpcd.add(rbsim);
         rbsim.setText("Sim");
+        rbsim.setEnabled(false);
 
         grpcd.add(rbnao);
         rbnao.setText("Não");
+        rbnao.setEnabled(false);
 
         btmatricular.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btmatricular.setText("Matricular");
+        btmatricular.setEnabled(false);
+        btmatricular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmatricularActionPerformed(evt);
+            }
+        });
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
@@ -86,6 +104,14 @@ public class MatricularAluno extends javax.swing.JDialog {
         btsair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btsairActionPerformed(evt);
+            }
+        });
+
+        btbuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btbuscar.setText("Buscar");
+        btbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbuscarActionPerformed(evt);
             }
         });
 
@@ -107,16 +133,22 @@ public class MatricularAluno extends javax.swing.JDialog {
                                 .addComponent(tfnome))
                             .addComponent(lbnascimento)
                             .addComponent(tfnascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbmatricula)
-                            .addComponent(lbpcd)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbsim)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbnao))
-                            .addComponent(tfmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbmatricula)
+                                    .addComponent(lbpcd)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbsim)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbnao))
+                                    .addComponent(tfmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(64, 64, 64))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(btbuscar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btmatricular)
                         .addGap(73, 73, 73)
@@ -128,10 +160,11 @@ public class MatricularAluno extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbturma)
-                    .addComponent(tfturma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfturma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btbuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbnome)
@@ -149,7 +182,7 @@ public class MatricularAluno extends javax.swing.JDialog {
                     .addComponent(tfnascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbsim)
                     .addComponent(rbnao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btmatricular)
                     .addComponent(btlimpar)
@@ -170,9 +203,59 @@ public class MatricularAluno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btsairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbuscarActionPerformed
+        try{
+           turma = Principal.daoturma.listarTurma(tfturma.getText());
+           if(turma != null){
+               tfnome.setEnabled(true);
+               tfmatricula.setEnabled(true);
+               tfnascimento.setEnabled(true);
+               rbsim.setEnabled(true);
+               rbnao.setEnabled(true);
+               btmatricular.setEnabled(true);
+           }else{
+               JOptionPane.showMessageDialog(null, "Turma não encontrada!", "Atenção", JOptionPane.WARNING_MESSAGE);
+           }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao buscar turma!", "Atenção", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btbuscarActionPerformed
+
+    private void btmatricularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmatricularActionPerformed
+        Aluno aluno = new Aluno();
+        aluno.setNome(tfnome.getText());
+        aluno.setMatricula(Integer.parseInt(tfmatricula.getText()));
+        aluno.setAnoNascimento(Integer.parseInt(tfnascimento.getText()));
+        aluno.setPcd(retornarRadio());
+        Principal.daoaluno.insereAluno(aluno);
+        turma.getAlunos().add(aluno);
+        Principal.daoturma.alterarTurma(turma);
+        
+        JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso!", "Concluído", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btmatricularActionPerformed
+
+    private int retornarRadio(){
+        JRadioButton radio; 
+        String str = null; 
+        int retorno = 0;
+        Enumeration jr = grpcd.getElements(); 
+        while ( jr.hasMoreElements() ) 
+        { 
+            radio = (JRadioButton) jr.nextElement(); 
+            if (radio.isSelected()) 
+            { 
+                str = radio.getText(); 
+                if(str.equals("Sim")){
+                    retorno = 1;
+                }else{
+                    retorno = 0;
+                }
+            } 
+        }
+        return retorno;
+    }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -213,6 +296,7 @@ public class MatricularAluno extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btbuscar;
     private javax.swing.JButton btlimpar;
     private javax.swing.JButton btmatricular;
     private javax.swing.JButton btsair;

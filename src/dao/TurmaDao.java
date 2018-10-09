@@ -29,6 +29,16 @@ public class TurmaDao {
         return lista;
     }
     
+    public Turma listarTurma(String nome){
+        Turma turma = null;
+        for(Turma t : lista){
+            if(t.getNome().equals(nome)){
+                turma = t;
+            }
+        }
+        return turma;
+    }
+    
     public List<Turma> listarTurmasPCD(){
         List<Turma> l = null;
         for(Turma t : lista){
@@ -39,5 +49,13 @@ public class TurmaDao {
             }
         }
         return l;
+    }
+    
+    public void alterarTurma(Turma turma){
+        Turma tur = listarTurma(turma.getNome());
+        if(tur != null){
+            int idx = lista.indexOf(tur);
+            lista.set(idx, turma);
+        }
     }
 }
