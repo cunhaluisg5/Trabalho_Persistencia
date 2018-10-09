@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import dao.TurmaDao;
+import enuns.EEnsino;
 import javax.swing.JOptionPane;
+import model.Turma;
 
 /**
  *
@@ -66,6 +69,11 @@ public class CadastrarTurma extends javax.swing.JDialog {
 
         btcadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btcadastrar.setText("Cadastrar");
+        btcadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btcadastrarActionPerformed(evt);
+            }
+        });
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
@@ -153,14 +161,43 @@ public class CadastrarTurma extends javax.swing.JDialog {
     private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
         tfnome.setText("");
         tfano.setText("");
-        tftotalalunos.setText("");
         cbensino.setSelectedIndex(0);
         tfnome.requestFocus();
     }//GEN-LAST:event_btlimparActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcadastrarActionPerformed
+        try{
+            Turma turma = new Turma();
+            turma.setNome(tfnome.getText());
+            turma.setAno(Integer.parseInt(tfano.getText()));
+            turma.setTotalAlunos(Integer.parseInt(tftotalalunos.getText()));
+            turma.setEnsino(ensino(cbensino.getSelectedIndex()));
+            
+            TurmaDao dao = new TurmaDao();
+            dao.insereTurma(turma);
+            
+            JOptionPane.showMessageDialog(null, "Turma cadastrada com sucesso!", "Concluído", JOptionPane.INFORMATION_MESSAGE);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar turma!", "Atenção", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btcadastrarActionPerformed
+
+    private EEnsino ensino(int opcao){
+        EEnsino escolha = null;
+        switch(opcao){
+            case 0:
+                escolha = EEnsino.FUNDAMENTALI;
+                break;
+            case 1:
+                escolha = EEnsino.FUNDAMENTAL;
+                break;
+            case 2:
+                escolha = EEnsino.MEDIO;
+                break;
+        }
+        return escolha;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

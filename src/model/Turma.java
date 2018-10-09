@@ -18,17 +18,19 @@ public class Turma {
     private String nome;
     private EEnsino ensino;
     private int ano;
+    private int totalAlunos;
     private List<Aluno> alunos;
 
     public Turma() {
         alunos = new ArrayList<Aluno>();
     }
 
-    public Turma(int tur_id, String nome, EEnsino ensino, int ano, List<Aluno> alunos) {
+    public Turma(int tur_id, String nome, EEnsino ensino, int ano, int totalAlunos, List<Aluno> alunos) {
         this.tur_id = tur_id;
         this.nome = nome;
         this.ensino = ensino;
         this.ano = ano;
+        this.totalAlunos = totalAlunos;
         this.alunos = alunos;
     }
 
@@ -62,6 +64,14 @@ public class Turma {
 
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public int getTotalAlunos() {
+        return totalAlunos;
+    }
+
+    public void setTotalAlunos(int totalAlunos) {
+        this.totalAlunos = totalAlunos;
     }
 
     public List<Aluno> getAlunos() {
