@@ -6,6 +6,8 @@
 package model;
 
 import enuns.EEnsino;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,15 +18,18 @@ public class Turma {
     private String nome;
     private EEnsino ensino;
     private int ano;
+    private List<Aluno> alunos;
 
     public Turma() {
+        alunos = new ArrayList<Aluno>();
     }
 
-    public Turma(int tur_id, String nome, EEnsino ensino, int ano) {
+    public Turma(int tur_id, String nome, EEnsino ensino, int ano, List<Aluno> alunos) {
         this.tur_id = tur_id;
         this.nome = nome;
         this.ensino = ensino;
         this.ano = ano;
+        this.alunos = alunos;
     }
 
     public int getTur_id() {
@@ -57,5 +62,13 @@ public class Turma {
 
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 }
