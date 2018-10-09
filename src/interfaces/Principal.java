@@ -102,6 +102,11 @@ public class Principal extends javax.swing.JFrame {
         mbusca.add(mibuscaraluno);
 
         milistarturmaspcd.setText("Listar turmas com alunos PCD");
+        milistarturmaspcd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                milistarturmaspcdActionPerformed(evt);
+            }
+        });
         mbusca.add(milistarturmaspcd);
 
         miimprimiralunos.setText("Imprimir lista de alunos");
@@ -143,6 +148,10 @@ public class Principal extends javax.swing.JFrame {
     private void mibuscaralunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mibuscaralunoActionPerformed
         new BuscarAluno(null, true).setVisible(true);
     }//GEN-LAST:event_mibuscaralunoActionPerformed
+
+    private void milistarturmaspcdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_milistarturmaspcdActionPerformed
+        new ListarTurmasPCD(null, true).setVisible(true);
+    }//GEN-LAST:event_milistarturmaspcdActionPerformed
 
     /**
      * @param args the command line arguments

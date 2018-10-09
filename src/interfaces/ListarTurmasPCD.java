@@ -9,12 +9,12 @@ package interfaces;
  *
  * @author Luis
  */
-public class BuscarAluno extends javax.swing.JDialog {
+public class ListarTurmasPCD extends javax.swing.JDialog {
 
     /**
-     * Creates new form BuscarAluno
+     * Creates new form ListarTurmasPCD
      */
-    public BuscarAluno(java.awt.Frame parent, boolean modal) {
+    public ListarTurmasPCD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -29,24 +29,16 @@ public class BuscarAluno extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbmatricula = new javax.swing.JLabel();
-        tfmatricula = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbinfo = new javax.swing.JTable();
-        btbuscar = new javax.swing.JButton();
-        btlimpar = new javax.swing.JButton();
-        btremover = new javax.swing.JButton();
         btsair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar Aluno");
+        setTitle("Listar Turmas Com Alunos PCD");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        lbmatricula.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbmatricula.setText("Matrícula:");
 
         jScrollPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -55,11 +47,11 @@ public class BuscarAluno extends javax.swing.JDialog {
 
             },
             new String [] {
-                "id", "Nome", "Ano de Nascimento", "Matrícula", "PCD", "Turma"
+                "id", "Nome", "Ensino", "Ano", "Total de Alunos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -73,20 +65,9 @@ public class BuscarAluno extends javax.swing.JDialog {
             tbinfo.getColumnModel().getColumn(0).setPreferredWidth(0);
             tbinfo.getColumnModel().getColumn(0).setMaxWidth(0);
             tbinfo.getColumnModel().getColumn(1).setResizable(false);
-            tbinfo.getColumnModel().getColumn(2).setResizable(false);
             tbinfo.getColumnModel().getColumn(3).setResizable(false);
             tbinfo.getColumnModel().getColumn(4).setResizable(false);
-            tbinfo.getColumnModel().getColumn(5).setResizable(false);
         }
-
-        btbuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btbuscar.setText("Buscar");
-
-        btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btlimpar.setText("Limpar");
-
-        btremover.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btremover.setText("Remover");
 
         btsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btsair.setText("Sair");
@@ -96,43 +77,20 @@ public class BuscarAluno extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btlimpar)
-                            .addGap(188, 188, 188)
-                            .addComponent(btremover)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btsair))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbmatricula)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(tfmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(btbuscar)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btsair)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(lbmatricula)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btbuscar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btlimpar)
-                    .addComponent(btremover)
-                    .addComponent(btsair))
-                .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btsair)
+                .addGap(19, 19, 19))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -158,20 +116,20 @@ public class BuscarAluno extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarTurmasPCD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarTurmasPCD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarTurmasPCD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarTurmasPCD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BuscarAluno dialog = new BuscarAluno(new javax.swing.JFrame(), true);
+                ListarTurmasPCD dialog = new ListarTurmasPCD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -184,14 +142,9 @@ public class BuscarAluno extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btbuscar;
-    private javax.swing.JButton btlimpar;
-    private javax.swing.JButton btremover;
     private javax.swing.JButton btsair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbmatricula;
     private javax.swing.JTable tbinfo;
-    private javax.swing.JTextField tfmatricula;
     // End of variables declaration//GEN-END:variables
 }
