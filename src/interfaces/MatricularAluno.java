@@ -232,6 +232,7 @@ public class MatricularAluno extends javax.swing.JDialog {
         aluno.setMatricula(Integer.parseInt(tfmatricula.getText()));
         aluno.setAnoNascimento(Integer.parseInt(tfnascimento.getText()));
         aluno.setPcd(retornarRadio());
+        aluno.setTurma(turma);
         Principal.daoaluno.insereAluno(aluno);
         turma.getAlunos().add(aluno);
         Principal.daoturma.alterarTurma(turma);

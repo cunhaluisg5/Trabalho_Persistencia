@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import dao.AlunoDao;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Aluno;
 
 /**
  *
@@ -83,6 +86,11 @@ public class BuscarAluno extends javax.swing.JDialog {
 
         btbuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btbuscar.setText("Buscar");
+        btbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbuscarActionPerformed(evt);
+            }
+        });
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
@@ -131,8 +139,8 @@ public class BuscarAluno extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addComponent(lbmatricula)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfmatricula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btbuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,9 +165,36 @@ public class BuscarAluno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btsairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbuscarActionPerformed
+        try{
+            Aluno aluno = Principal.daoaluno.buscarAluno(Integer.parseInt(tfmatricula.getText()));
+            DefaultTableModel modelo = (DefaultTableModel) tbinfo.getModel();
+            modelo.setNumRows(0);
+            
+            modelo.addRow(new Object[]{
+                aluno.getAlu_id(),
+                aluno.getNome(),
+                aluno.getAnoNascimento(),
+                aluno.getMatricula(),
+                retornaPCD(aluno.getPcd()),
+                aluno.getTurma().getNome()
+            });
+           
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao buscar aluno!", "Atenção", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btbuscarActionPerformed
+
+    private String retornaPCD(int status){
+        String str;
+        if(status == 1){
+            str = "Sim";
+        }else{
+            str = "Não";
+        }
+        return str;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

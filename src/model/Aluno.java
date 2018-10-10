@@ -5,6 +5,9 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Luis
@@ -15,16 +18,18 @@ public class Aluno {
     private int anoNascimento;
     private int matricula;
     private int pcd;
+    private Turma turma;
 
     public Aluno() {
     }
 
-    public Aluno(int alu_id, String nome, int anoNascimento, int matricula, int pcd) {
+    public Aluno(int alu_id, String nome, int anoNascimento, int matricula, int pcd, Turma turma) {
         this.alu_id = alu_id;
         this.nome = nome;
         this.anoNascimento = anoNascimento;
         this.matricula = matricula;
         this.pcd = pcd;
+        this.turma = turma;
     }
 
     public int getAlu_id() {
@@ -65,5 +70,13 @@ public class Aluno {
 
     public void setPcd(int pcd) {
         this.pcd = pcd;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 }

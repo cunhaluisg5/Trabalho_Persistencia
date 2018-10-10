@@ -26,7 +26,7 @@ public class AlunoDao {
     }
     
     public Aluno buscarAluno(int matricula){
-        Aluno aluno = null;
+        Aluno aluno = new Aluno();
         for(Aluno a : lista){
             if(a.getMatricula() == matricula){
                 aluno = a;
