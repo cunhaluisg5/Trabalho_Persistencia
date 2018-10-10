@@ -102,6 +102,11 @@ public class BuscarAluno extends javax.swing.JDialog {
         btremover.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btremover.setText("Remover");
         btremover.setEnabled(false);
+        btremover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btremoverActionPerformed(evt);
+            }
+        });
 
         btsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btsair.setText("Sair");
@@ -173,17 +178,21 @@ public class BuscarAluno extends javax.swing.JDialog {
     private void btbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbuscarActionPerformed
         try{
             Aluno aluno = Principal.daoaluno.buscarAluno(Integer.parseInt(tfmatricula.getText()));
-            modelo = (DefaultTableModel) tbinfo.getModel();
-            modelo.setNumRows(0);
             
-            modelo.addRow(new Object[]{
-                aluno.getAlu_id(),
-                aluno.getNome(),
-                aluno.getAnoNascimento(),
-                aluno.getMatricula(),
-                retornaPCD(aluno.getPcd()),
-                aluno.getTurma().getNome()
-            });
+            if(aluno != null){
+                modelo = (DefaultTableModel) tbinfo.getModel();
+                modelo.setNumRows(0);
+
+                modelo.addRow(new Object[]{
+                    aluno.getAlu_id(),
+                    aluno.getNome(),
+                    aluno.getAnoNascimento(),
+                    aluno.getMatricula(),
+                    retornaPCD(aluno.getPcd()),
+                    aluno.getTurma().getNome()
+                });
+                btremover.setEnabled(true);
+            }            
            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao buscar aluno!", "Atenção", JOptionPane.ERROR_MESSAGE);
@@ -196,6 +205,20 @@ public class BuscarAluno extends javax.swing.JDialog {
         btremover.setEnabled(false);
         tfmatricula.requestFocus();
     }//GEN-LAST:event_btlimparActionPerformed
+
+    private void btremoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btremoverActionPerformed
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente remover o aluno?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(opcao == JOptionPane.YES_OPTION){
+            try{
+                int matricula = (int) tbinfo.getValueAt(tbinfo.getSelectedRow(), 3);
+                Principal.daoaluno.removerAluno(matricula);
+                limpaTabela();
+                JOptionPane.showMessageDialog(null, "Aluno removido com sucesso!", "Concluído", JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao remover aluno!", "Atenção", JOptionPane.ERROR_MESSAGE);
+            }
+        }        
+    }//GEN-LAST:event_btremoverActionPerformed
 
     private String retornaPCD(int status){
         String str;
