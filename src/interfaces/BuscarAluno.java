@@ -16,9 +16,8 @@ import model.Aluno;
  */
 public class BuscarAluno extends javax.swing.JDialog {
 
-    /**
-     * Creates new form BuscarAluno
-     */
+    DefaultTableModel modelo;
+    
     public BuscarAluno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -94,9 +93,15 @@ public class BuscarAluno extends javax.swing.JDialog {
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
+        btlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlimparActionPerformed(evt);
+            }
+        });
 
         btremover.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btremover.setText("Remover");
+        btremover.setEnabled(false);
 
         btsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btsair.setText("Sair");
@@ -168,7 +173,7 @@ public class BuscarAluno extends javax.swing.JDialog {
     private void btbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbuscarActionPerformed
         try{
             Aluno aluno = Principal.daoaluno.buscarAluno(Integer.parseInt(tfmatricula.getText()));
-            DefaultTableModel modelo = (DefaultTableModel) tbinfo.getModel();
+            modelo = (DefaultTableModel) tbinfo.getModel();
             modelo.setNumRows(0);
             
             modelo.addRow(new Object[]{
@@ -185,6 +190,13 @@ public class BuscarAluno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btbuscarActionPerformed
 
+    private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
+        tfmatricula.setText("");
+        limpaTabela();
+        btremover.setEnabled(false);
+        tfmatricula.requestFocus();
+    }//GEN-LAST:event_btlimparActionPerformed
+
     private String retornaPCD(int status){
         String str;
         if(status == 1){
@@ -193,6 +205,13 @@ public class BuscarAluno extends javax.swing.JDialog {
             str = "Não";
         }
         return str;
+    }
+    
+    private void limpaTabela(){
+        for (int i = tbinfo.getRowCount() - 1; i >= 0; --i) 
+        { 
+            modelo.removeRow(i); 
+        } 
     }
     
     public static void main(String args[]) {
