@@ -14,7 +14,7 @@ import model.Turma;
  *
  * @author Luis
  */
-public class AlunoDao {
+public class AlunoDao{
     private List<Aluno> lista;
 
     public AlunoDao() {
@@ -39,7 +39,7 @@ public class AlunoDao {
         Aluno aluno = buscarAluno(matricula);
         if(aluno != null){
             lista.remove(aluno);
-        }
+        }        
     }
     
     public List<Aluno> listarAlunos(String nome){

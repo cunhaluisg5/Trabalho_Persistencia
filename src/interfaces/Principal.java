@@ -144,6 +144,11 @@ public class Principal extends javax.swing.JFrame {
         msobre.add(miajuda);
 
         misobre.setText("Sobre");
+        misobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                misobreActionPerformed(evt);
+            }
+        });
         msobre.add(misobre);
 
         jMenuBar1.add(msobre);
@@ -188,6 +193,14 @@ public class Principal extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_misairActionPerformed
+
+    private void misobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_misobreActionPerformed
+        String equipe = "Daniel Carlos Meireles"
+                + "\nJoão Pedro Guedes Presto"
+                + "\nLuís Gustavo da Cunha Cipriani\n";
+        String data = "\n10/10/2018";
+        JOptionPane.showMessageDialog(null, equipe + data);
+    }//GEN-LAST:event_misobreActionPerformed
 
     /**
      * @param args the command line arguments

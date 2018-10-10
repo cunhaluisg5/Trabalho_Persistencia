@@ -10,7 +10,7 @@ package enuns;
  * @author Luis
  */
 public enum EEnsino {
-    FUNDAMENTALI,
-    FUNDAMENTAL,
-    MEDIO
+    FundamentalI,
+    Fundamental,
+    Medio
 }

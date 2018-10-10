@@ -186,13 +186,13 @@ public class CadastrarTurma extends javax.swing.JDialog {
         EEnsino escolha = null;
         switch(opcao){
             case 0:
-                escolha = EEnsino.FUNDAMENTALI;
+                escolha = EEnsino.FundamentalI;
                 break;
             case 1:
-                escolha = EEnsino.FUNDAMENTAL;
+                escolha = EEnsino.Fundamental;
                 break;
             case 2:
-                escolha = EEnsino.MEDIO;
+                escolha = EEnsino.Medio;
                 break;
         }
         return escolha;
