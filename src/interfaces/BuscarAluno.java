@@ -5,7 +5,6 @@
  */
 package interfaces;
 
-import dao.AlunoDao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Aluno;

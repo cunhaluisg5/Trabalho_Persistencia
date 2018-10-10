@@ -6,6 +6,7 @@
 package interfaces;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,9 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class ImprimirAlunos extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ImprimirAlunos
-     */
+    DefaultTableModel modelo;
+    
     public ImprimirAlunos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -81,6 +81,11 @@ public class ImprimirAlunos extends javax.swing.JDialog {
 
         btlimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btlimpar.setText("Limpar");
+        btlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlimparActionPerformed(evt);
+            }
+        });
 
         btsair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btsair.setText("Sair");
@@ -141,9 +146,19 @@ public class ImprimirAlunos extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btsairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimparActionPerformed
+        tfturma.setText("");
+        limpaTabela();
+        tfturma.requestFocus();
+    }//GEN-LAST:event_btlimparActionPerformed
+
+    private void limpaTabela(){
+        for (int i = tbinfo.getRowCount() - 1; i >= 0; --i) 
+        { 
+            modelo.removeRow(i); 
+        } 
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
