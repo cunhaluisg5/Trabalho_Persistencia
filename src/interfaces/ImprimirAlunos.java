@@ -7,6 +7,8 @@ package interfaces;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Aluno;
+import model.Turma;
 
 /**
  *
@@ -51,6 +53,11 @@ public class ImprimirAlunos extends javax.swing.JDialog {
 
         btimprimir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btimprimir.setText("Imprimir");
+        btimprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btimprimirActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -151,6 +158,24 @@ public class ImprimirAlunos extends javax.swing.JDialog {
         limpaTabela();
         tfturma.requestFocus();
     }//GEN-LAST:event_btlimparActionPerformed
+
+    private void btimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btimprimirActionPerformed
+        try{
+            String nome = tfturma.getText();
+            Turma turma = Principal.daoturma.listarTurma(nome);
+            modelo = (DefaultTableModel) tbinfo.getModel();
+            modelo.setNumRows(0);
+            
+            for(Aluno a : turma.getAlunos()){
+                modelo.addRow(new Object[]{
+                    a.getAlu_id(),
+                    a.getNome()
+                });
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao imprimir aluno!", "Atenção", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btimprimirActionPerformed
 
     private void limpaTabela(){
         for (int i = tbinfo.getRowCount() - 1; i >= 0; --i) 
